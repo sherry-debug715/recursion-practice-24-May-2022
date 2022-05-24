@@ -20,6 +20,25 @@ fibonacci(10); // 55
 ***********************************************************************/
 
 // your code here
+function fibonacci(num) {
+
+  if(num === 1 || num === 2) return 1
+  return fibonacci(num - 1) + fibonacci(num - 2)
+}
+console.log(fibonacci(4)); // 3
+
+// fibonacci(3) + fibonacci(2)
+// fibonacci(2)+fib(1)+fibonacci(2) 
+// return 1 + 1 + 1 = 3
+
+console.log(fibonacci(5)); // 5
+// fib(4) + fib(3)
+// fib(3) + fib(2) + fib(2) + fib(1)
+// fib(2)+fib(1) + fib(2) + fib(2) + fib(1)
+
+// return 1 + 1 + 1 + 1 + 1 = 5
+
+
   
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
