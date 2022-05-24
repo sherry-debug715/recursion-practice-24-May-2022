@@ -23,10 +23,10 @@ Examples:
 advancedExponent(2, 0); // 1
 advancedExponent(2, 1); // 2
 advancedExponent(2, 2); // 4
-advancedExponent(2, 3); // 8
-advancedExponent(2, 4); // 16
-advancedExponent(2, 5); // 32
-advancedExponent(2, 6); // 64
+advancedExponent(2, 3); // 8 // 2^^1 ** 2 === 8
+advancedExponent(2, 4); // 16 // (2**2)**2 === 16
+advancedExponent(2, 5); // 32 // 2 * (2**2)** 2 === 32
+advancedExponent(2, 6); // 64 // （2**3）**2 === 64
 advancedExponent(2, 7); // 128
 advancedExponent(2, 8); // 256
 advancedExponent(2, 9); // 512
@@ -40,9 +40,27 @@ times `advancedExponent` is being recursively called.
 ***********************************************************************/
 
 
-function advancedExponent(b, n) {
+function advancedExponent(base, power) {
   // your code here
+  if(power === 0) return 1;
+  if(power === 1) return base;
+  if(power % 2 !== 0) {
+    const result = advancedExponent(base, (power-1)/2);
+    console.log('power % 2 !== 0', result)
+    return 2 * result * result;
+  }
+  if(power % 2 === 0) {
+    const result = advancedExponent(base, power/2);
+    console.log('power % 2 === 0', result)
+    return result * result 
+  }
 }
+
+console.log(advancedExponent(2, 5)); // 32 // 2 * (2**2) === 8
+console.log(advancedExponent(2, 12)); // 4096
+
+
+
 
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
