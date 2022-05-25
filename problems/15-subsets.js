@@ -15,6 +15,42 @@ Hint: For subsets([1, 2, 3]), there are two kinds of subsets:
 ***********************************************************************/
 
 // your code here
+const subsets = (arr) => {
+  if (!arr.length) return [[]];
+
+  const last = arr[arr.length - 1];
+  const subs = subsets(arr.slice(0, arr.length - 1));
+  console.log('this is subs', subs)
+
+  return subs.concat(subs.map((el) => {
+    let newArr = el.slice(0)
+    console.log('this is newArr', newArr)
+    newArr.push(last);
+    return newArr;
+  }));
+}
+
+console.log(subsets([1, 2])) // [[], [1], [2], [1, 2]]
+// last = 2
+// subs = subsets([1])
+// last = 1
+// subs = subsets([]) return [[]]
+// subs = [[]]
+// [[]].concat([[]].map(el => newArr = [1])) -> [[],[1]]
+
+// now last = 2
+// subs = [[], [1]]
+// subs.concat(sub.map(el)=> {
+  // el = []
+// newArr = []
+// newArr = [2]
+// subs now = [[], [1], [2]]
+  // el = [1]
+  // newArr = [1]
+  // newArr = [1,2]
+  // subs = [[],[1],[2],[1,2]]
+
+
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {

@@ -37,6 +37,48 @@ console.log(x[0] === y[0]) // true
 ***********************************************************************/
 
 // your code here
+function deepDup(arr) {
+  let duped = [];
+  arr.forEach(ele => {
+    console.log('this is ele', ele)
+    if(Array.isArray(ele)) {
+      duped.push(deepDup(ele))
+      console.log('if block',duped)
+    } else {
+      duped.push(ele)
+      console.log('else block',duped)
+    }
+  })
+  return duped
+}
+
+let arr = [[1], [2, [3]]];
+console.log(deepDup(arr))
+// ele = [1]
+// duped.push(deepDup([1]))
+//// deepDup([1])
+//// ele = 1
+//// duped.push(1) => [1]
+//// duped.push([1])
+//// [[1]]
+
+// ele = [2, [3]]
+// duped.push(deepDup([2,[3]]))
+//// deepDup([2,[3]])
+//// ele = 2
+//// duped.push(2) => duped = [2]
+//// ele = [3]
+//// duped.push(deepDup([3]))
+
+//// deepDup([3])
+//// ele = 3
+/// duped.push(3) => duped = [3]
+//// return to line 71, => duped.push([3]) => [2,[3]]
+//// return to line 66 => [[1], [2, [3]]] 
+
+// deepDup(([2,[3]]))
+// duped = [1,2]
+// deepDup([3])
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {

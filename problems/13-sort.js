@@ -23,8 +23,15 @@ sort([]); // []
 
 function sort(nums, sorted = []) {
   // your code here
+  if (!nums.length) return sorted;
+  let min = Math.min(...nums);
+  let minIndex = nums.indexOf(min)
+  sorted.push(min);
+  nums.splice(minIndex, 1)
+  return sort(nums, sorted)
 }
-
+// [1, 1, 3, 4, 6, 7]
+console.log(sort([4,1,6,3,1,7]))
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
   module.exports = sort;
