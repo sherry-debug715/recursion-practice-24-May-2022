@@ -64,9 +64,25 @@ The call above should return the tree below:
 ***********************************************************************/
 
 const makeTree = (categories, parent) => {
-  // your code here
+  const node = {};
+  const matchingCategories = categories.filter((category) => {
+    return category.parent === parent;
+  });
+  console.log(matchingCategories)
+  matchingCategories.forEach((category) => {
+    node[category.id] = makeTree(categories, category.id);
+  });
+  return node;
 };
 
+const categories2 = [
+  { id: 'animals', 'parent': null },
+  { id: 'mammals', 'parent': 'animals' },
+  { id: 'cats', 'parent': 'mammals' },
+  { id: 'persian', 'parent': 'cats' }
+];
+
+console.log(makeTree(categories2, null));
 /**************DO NOT MODIFY ANYTHING UNDER THIS LINE*****************/
 try {
   module.exports = makeTree;
