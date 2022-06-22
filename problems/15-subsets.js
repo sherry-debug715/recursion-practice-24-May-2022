@@ -15,22 +15,34 @@ Hint: For subsets([1, 2, 3]), there are two kinds of subsets:
 ***********************************************************************/
 
 // your code here
-const subsets = (arr) => {
-  if (!arr.length) return [[]];
+// const subsets = (arr) => {
+//   if (!arr.length) return [[]];
 
-  const last = arr[arr.length - 1];
-  const subs = subsets(arr.slice(0, arr.length - 1));
-  console.log('this is subs', subs)
+//   const last = arr[arr.length - 1];
+//   const subs = subsets(arr.slice(0, arr.length - 1));
+//   console.log('this is subs', subs)
 
-  return subs.concat(subs.map((el) => {
-    let newArr = el.slice(0)
-    console.log('this is newArr', newArr)
-    newArr.push(last);
-    return newArr;
-  }));
+//   return subs.concat(subs.map((el) => {
+//     let newArr = el.slice(0)
+//     console.log('this is newArr', newArr)
+//     newArr.push(last);
+//     return newArr;
+//   }));
+// }
+
+function subsets(arr) {
+  if (!arr.length) return [ [] ];
+
+  let firstEle = arr[0];
+  let arrWithoutFirst = arr.slice(1);
+  let twoDArrWithoutFirst = subsets(arrWithoutFirst);
+
+  let withFirst = []
+  twoDArrWithoutFirst.forEach(subs => withFirst.push([...subs, firstEle]));
+  return [...twoDArrWithoutFirst, ...withFirst]
 }
 
-subsets([1, 2, 3]) 
+
 // function subsets1(arr) {
 //   //establish base case. If I pass in an empty array, the only subset is that 
 //   //empty array itself
